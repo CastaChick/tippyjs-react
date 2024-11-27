@@ -507,9 +507,10 @@
   }
 
   var forwardRef = (function (Tippy, defaultProps) {
-    return /*#__PURE__*/React.forwardRef(function TippyWrapper(_ref, _ref2) {
+    return function TippyWrapper(_ref) {
       var children = _ref.children,
-          props = _objectWithoutPropertiesLoose(_ref, ["children"]);
+          _ref2 = _ref.ref,
+          props = _objectWithoutPropertiesLoose(_ref, ["children", "ref"]);
 
       return (
         /*#__PURE__*/
@@ -518,11 +519,11 @@
         React__default.createElement(Tippy, Object.assign({}, defaultProps, props), children ? /*#__PURE__*/React.cloneElement(children, {
           ref: function ref(node) {
             preserveRef(_ref2, node);
-            preserveRef(children.ref, node);
+            preserveRef(children.props.ref, node);
           }
         }) : null)
       );
-    });
+    };
   });
 
   var useSingleton = /*#__PURE__*/useSingletonGenerator(tippy.createSingleton);

@@ -1,6 +1,6 @@
 import tippy, { createSingleton } from 'tippy.js';
 export { default as tippy } from 'tippy.js';
-import React, { useLayoutEffect, useEffect, useRef, useState, cloneElement, useMemo, forwardRef as forwardRef$1 } from 'react';
+import React, { useLayoutEffect, useEffect, useRef, useState, cloneElement, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -503,9 +503,10 @@ function useSingletonGenerator(createSingleton) {
 }
 
 var forwardRef = (function (Tippy, defaultProps) {
-  return /*#__PURE__*/forwardRef$1(function TippyWrapper(_ref, _ref2) {
+  return function TippyWrapper(_ref) {
     var children = _ref.children,
-        props = _objectWithoutPropertiesLoose(_ref, ["children"]);
+        _ref2 = _ref.ref,
+        props = _objectWithoutPropertiesLoose(_ref, ["children", "ref"]);
 
     return (
       /*#__PURE__*/
@@ -514,11 +515,11 @@ var forwardRef = (function (Tippy, defaultProps) {
       React.createElement(Tippy, Object.assign({}, defaultProps, props), children ? /*#__PURE__*/cloneElement(children, {
         ref: function ref(node) {
           preserveRef(_ref2, node);
-          preserveRef(children.ref, node);
+          preserveRef(children.props.ref, node);
         }
       }) : null)
     );
-  });
+  };
 });
 
 var useSingleton = /*#__PURE__*/useSingletonGenerator(createSingleton);
